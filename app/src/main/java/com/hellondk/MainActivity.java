@@ -2,9 +2,15 @@ package com.hellondk;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView tvResult;
+    private EditText etNumber;
+    private Button btnCalculate;
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -16,9 +22,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Example of a call to a native method
-        TextView tv = findViewById(R.id.sample_text);
-        tv.setText(getPrimeNumber());
+        tvResult = findViewById(R.id.tvResult);
+        etNumber = findViewById(R.id.etNumber);
+        btnCalculate = findViewById(R.id.btnCalculate);
+
+        btnCalculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (etNumber.getText().toString() != null) {
+                    int input = Integer.parseInt(etNumber.getText().toString());
+                    tvResult.setText(findPrime(input));
+                }
+            }
+        });
     }
 
     /**
@@ -26,4 +42,6 @@ public class MainActivity extends AppCompatActivity {
      * which is packaged with this application.
      */
     public native String getPrimeNumber();
+
+    public native String findPrime(int number);
 }

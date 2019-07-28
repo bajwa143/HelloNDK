@@ -12,8 +12,8 @@ private:
 
 public:
     PrimeNumber(int);
-
     int getNumber();
+    bool isPrime();
 };
 
 
