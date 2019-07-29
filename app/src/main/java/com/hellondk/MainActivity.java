@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnCalculate;
 
     // Used to load the 'native-lib' library on application startup.
+    // The libname argument must not contain any platform specific prefix, file extension or path
     static {
         System.loadLibrary("native-lib");
     }
@@ -41,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
+    // Native method must be declared in JAVA
+    // The native method is simply declared with the native keyword, and no implementation is provided in Java
+    // Native method can be public, private, package or protected
+    // native keyword denote that this method is implemented in other language
+    // native methods don’t have to be static methods, and don’t have to use primitive types only
     public native String getPrimeNumber();
 
     public native String findPrime(int number);
